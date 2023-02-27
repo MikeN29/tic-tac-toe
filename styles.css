@@ -1,0 +1,62 @@
+#gameDiv {
+  width: 450px;
+  height: 450px;
+  display: grid;
+  grid-template-columns: 150px 150px 150px;
+  grid-template-rows: 150px 150px 150px;
+  background-color: aqua;
+  border: 2px solid black;
+}
+
+#cell1 {
+  grid-column: 1 / 2;
+  grid-row: 1 /2;
+}
+
+#cell2 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+#cell3 {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+#cell4 {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+#cell5 {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+#cell6 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+#cell7 {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+#cell8 {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+
+#cell9 {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  font-size: 30px;
+}
