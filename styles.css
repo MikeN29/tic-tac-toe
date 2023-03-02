@@ -60,3 +60,7 @@
   border: 2px solid black;
   font-size: 30px;
 }
+
+#gameSetUp {
+  height: 300px;
+}

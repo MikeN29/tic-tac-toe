@@ -1,9 +1,3 @@
-// You’re going to store the gameboard as an array inside of a Gameboard object, so start there!
-// Your players are also going to be stored in objects, and you’re probably going to want an object to control the flow of the game itself.
-
-// Your main goal here is to have as little global code as possible. Try tucking everything away inside of a module or factory.
-// Rule of thumb: if you only ever need ONE of something (gameBoard, displayController), use a module. If you need multiples of something (players!), create them with factories.
-
 //gameboard array
 
 function gameBoardFunction(
@@ -18,8 +12,8 @@ function gameBoardFunction(
   cell9
 ) {
   let gameBoardArray = {
-    cell1: "x",
-    cell2: "x",
+    cell1,
+    cell2,
     cell3: "x",
     cell4: "o",
     cell5: "o",
@@ -29,33 +23,76 @@ function gameBoardFunction(
     cell9: "x",
   };
 
+  const changeCell = function (userSymbol, cellID) {
+    let cell = "gameBoardArray" + cellID;
+
+    //gameBoardArray.cell1 = userSymbol;
+    `gameBoardArray.${cellID} = userSymbol`;
+    console.log(gameBoardArray);
+    //console.log(cell);
+    console.log(`gameBoardArray.${cellID}`);
+    //`document.getElementById("${cellID}").innerText = gameBoardArray.${cellID};`; //this updates and works
+    document.getElementById(cellID).innerText = userSymbol;
+    //document.getElementById("cellID").innerText = gameBoardArray.cell1; //this updates and works
+  };
+
+  /*below works
+  const changeCell = function (userSymbol, cellID) {
+    gameBoardArray.cell1 = userSymbol;
+
+    console.log(gameBoardArray);
+
+    console.log(`gameBoardArray.${cellID}`);
+    document.getElementById("cell1").innerText = gameBoardArray.cell1; //this updates and works
+  };*/
+
   {
     return {
       gameBoard: gameBoardArray,
+      changeCellFunction: changeCell,
     };
   }
 }
 
-var gameBoardVar = gameBoardFunction();
-
-console.log(gameBoardVar.gameBoard.cell1);
-console.log(gameBoardVar.gameBoard.cell2);
+//var gameBoardVar = gameBoardFunction();
 
 //players array
 
 const Player = (name, symbol) => {
+  //function giving an alert box, taking in player name and choice of symbol. only player 1 can choice symbol. Give player 2 the other symbol
+  //assign these to an object as below
+
   return { name, symbol };
 };
 
 //object to control the flow of the game
 
 function gameControlFunction() {
-  let gameControlArray = {};
+  //basic set up: eventlisteners on each cell which lets you update the array contents with an alert popup. Either x or o
+  //eventlisteners on each cell with a function linked which checks whos turn it is and updates the array contents with the correct symbol
+  var gameBoardVar = gameBoardFunction();
+
+  document.getElementById("cell1").addEventListener("click", () => {
+    //let cellID = "cell1";
+    updateArray();
+  });
+
+  document.getElementById("cell2").addEventListener("click", (event) => {
+    let cellID = event.target.id;
+    console.log(cellID);
+    updateArray(cellID);
+  });
+
+  function updateArray(cellID) {
+    //update cell1
+
+    let userSymbol = "x";
+
+    gameBoardVar.changeCellFunction(userSymbol, cellID);
+  }
 
   {
-    return {
-      gameControl: gameControlArray,
-    };
+    return {};
   }
 }
 
@@ -64,7 +101,7 @@ function gameControlFunction() {
 function renderGameBoard() {
   var gameBoardVar = gameBoardFunction();
 
-  document.getElementById("cell1").innerText = gameBoardVar.gameBoard.cell1;
+  //document.getElementById("cell1").innerText = gameBoardVar.gameBoard.cell1; // this doesnt work when cell1 value becomes 'x'
   document.getElementById("cell2").innerText = gameBoardVar.gameBoard.cell2;
   document.getElementById("cell3").innerText = gameBoardVar.gameBoard.cell3;
   document.getElementById("cell4").innerText = gameBoardVar.gameBoard.cell4;
@@ -73,12 +110,7 @@ function renderGameBoard() {
   document.getElementById("cell7").innerText = gameBoardVar.gameBoard.cell7;
   document.getElementById("cell8").innerText = gameBoardVar.gameBoard.cell8;
   document.getElementById("cell9").innerText = gameBoardVar.gameBoard.cell9;
-
-  // for (let i = 0; i < gameBoardVar.gameBoard.length; i++) {
-  //   document.getElementById(`"cell[${i}]"`).innerText =
-  //     gameBoardVar.gameBoard.cell[i];
-  // }
 }
 
-renderGameBoard();
-//console.log(gameBoard);
+//renderGameBoard();
+gameControlFunction();
