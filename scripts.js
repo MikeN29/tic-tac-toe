@@ -12,28 +12,29 @@ function gameBoardFunction(
   cell9
 ) {
   let gameBoardArray = {
-    cell1,
-    cell2,
-    cell3: "x",
-    cell4: "o",
-    cell5: "o",
-    cell6: "o",
-    cell7: "x",
-    cell8: "x",
-    cell9: "x",
+    // cell1: "",
+    // cell2: "",
+    // cell3: "x",
+    // cell4: "o",
+    // cell5: "o",
+    // cell6: "o",
+    // cell7: "x",
+    // cell8: "x",
+    // cell9: "x",
   };
 
-  const changeCell = function (userSymbol, cellID) {
-    let cell = "gameBoardArray" + cellID;
+  const changeCell = function (userSymbol, index, cellID) {
+    gameBoardArray[index] = userSymbol;
 
-    //gameBoardArray.cell1 = userSymbol;
-    `gameBoardArray.${cellID} = userSymbol`;
+    for (let i = 0; i < gameBoardArray.length; i++) {
+      if (gameBoardArray[i] == index) {
+        gameBoardArray[i] = userSymbol;
+      }
+    }
+
     console.log(gameBoardArray);
-    //console.log(cell);
-    console.log(`gameBoardArray.${cellID}`);
-    //`document.getElementById("${cellID}").innerText = gameBoardArray.${cellID};`; //this updates and works
+
     document.getElementById(cellID).innerText = userSymbol;
-    //document.getElementById("cellID").innerText = gameBoardArray.cell1; //this updates and works
   };
 
   /*below works
@@ -49,12 +50,10 @@ function gameBoardFunction(
   {
     return {
       gameBoard: gameBoardArray,
-      changeCellFunction: changeCell,
+      changeCell,
     };
   }
 }
-
-//var gameBoardVar = gameBoardFunction();
 
 //players array
 
@@ -67,50 +66,53 @@ const Player = (name, symbol) => {
 
 //object to control the flow of the game
 
-function gameControlFunction() {
+const gameControl = () => {
   //basic set up: eventlisteners on each cell which lets you update the array contents with an alert popup. Either x or o
   //eventlisteners on each cell with a function linked which checks whos turn it is and updates the array contents with the correct symbol
-  var gameBoardVar = gameBoardFunction();
 
-  document.getElementById("cell1").addEventListener("click", () => {
-    //let cellID = "cell1";
-    updateArray();
+  var gameBoardFunctionVar = gameBoardFunction();
+
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach((cell) => {
+    cell.addEventListener("click", (event) => {
+      handleClick(event);
+    });
   });
 
-  document.getElementById("cell2").addEventListener("click", (event) => {
+  const handleClick = (event) => {
+    let index = parseInt(event.target.id.split("-")[1]);
     let cellID = event.target.id;
+    console.log(index);
     console.log(cellID);
-    updateArray(cellID);
-  });
+    updateArray(index, cellID);
+  };
 
-  function updateArray(cellID) {
-    //update cell1
-
+  function updateArray(index, cellID) {
     let userSymbol = "x";
 
-    gameBoardVar.changeCellFunction(userSymbol, cellID);
+    gameBoardFunctionVar.changeCell(userSymbol, index, cellID);
   }
 
-  {
-    return {};
-  }
-}
+  return {
+    handleClick,
+  };
+};
 
 //function to render contents of gameBoard
 
 function renderGameBoard() {
   var gameBoardVar = gameBoardFunction();
 
-  //document.getElementById("cell1").innerText = gameBoardVar.gameBoard.cell1; // this doesnt work when cell1 value becomes 'x'
-  document.getElementById("cell2").innerText = gameBoardVar.gameBoard.cell2;
-  document.getElementById("cell3").innerText = gameBoardVar.gameBoard.cell3;
-  document.getElementById("cell4").innerText = gameBoardVar.gameBoard.cell4;
-  document.getElementById("cell5").innerText = gameBoardVar.gameBoard.cell5;
-  document.getElementById("cell6").innerText = gameBoardVar.gameBoard.cell6;
-  document.getElementById("cell7").innerText = gameBoardVar.gameBoard.cell7;
-  document.getElementById("cell8").innerText = gameBoardVar.gameBoard.cell8;
-  document.getElementById("cell9").innerText = gameBoardVar.gameBoard.cell9;
+  //   document.getElementById("cell-0").innerText = gameBoardVar.gameBoard.cell1;
+  //   document.getElementById("cell-1").innerText = gameBoardVar.gameBoard.cell2;
+  //   document.getElementById("cell-2").innerText = gameBoardVar.gameBoard.cell3;
+  //   document.getElementById("cell-3").innerText = gameBoardVar.gameBoard.cell4;
+  //   document.getElementById("cell-4").innerText = gameBoardVar.gameBoard.cell5;
+  //   document.getElementById("cell-5").innerText = gameBoardVar.gameBoard.cell6;
+  //   document.getElementById("cell-6").innerText = gameBoardVar.gameBoard.cell7;
+  //   document.getElementById("cell-7").innerText = gameBoardVar.gameBoard.cell8;
+  //   document.getElementById("cell-8").innerText = gameBoardVar.gameBoard.cell9;
 }
 
-//renderGameBoard();
-gameControlFunction();
+gameControl();
+renderGameBoard();
