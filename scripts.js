@@ -22,25 +22,50 @@ function gameBoardFunction() {
     // cell9: "x",
   };
 
-  const changeCell = function (userSymbol, index, cellID) {
-    /*
-    gameBoardArray[index] = userSymbol;
+  let turnTracker = 1;
 
-    console.log(gameBoardArray);
-
-    document.getElementById(cellID).innerText = userSymbol;
-*/
-
+  const changeCell = function (/*userSymbol,*/ index, cellID) {
     let cell = document.getElementById(cellID);
 
     console.log("childnode length = " + cell.childNodes.length);
 
-    if (cell.childNodes.length == 0) {
+    if (cell.childNodes.length == 0 && turnTracker % 2 == 0) {
+      turnTracker = turnTracker + 1;
+      let userSymbol = "x";
       gameBoardArray[index] = userSymbol;
       console.log(gameBoardArray);
       document.getElementById(cellID).innerText = userSymbol;
+      checkWinner();
+    } else if (cell.childNodes.length == 0 && turnTracker % 2 == 1) {
+      turnTracker = turnTracker + 1;
+      let userSymbol = "o";
+      gameBoardArray[index] = userSymbol;
+      console.log(gameBoardArray);
+      document.getElementById(cellID).innerText = userSymbol;
+      checkWinner();
     } else {
       alert("Choose a different cell!");
+    }
+  };
+
+  //function to check winning condition
+
+  const checkWinner = function () {
+    console.log(gameBoardArray);
+    if (
+      (gameBoardArray = {
+        0: "o",
+        1: "o",
+        2: "o",
+        3: "",
+        4: "",
+        5: "",
+        6: "",
+        7: "",
+        8: "",
+      })
+    ) {
+      alert("winner");
     }
   };
 
@@ -48,6 +73,7 @@ function gameBoardFunction() {
     return {
       gameBoard: gameBoardArray,
       changeCell,
+      checkWinner,
     };
   }
 }
@@ -76,27 +102,12 @@ const gameControl = () => {
   const handleClick = (event) => {
     let index = parseInt(event.target.id.split("-")[1]);
     let cellID = event.target.id;
-    console.log(index);
-    console.log(cellID);
-    userTurn(index, cellID);
-  };
 
-  let turnTracker = 1;
-  function userTurn(index, cellID) {
-    if (turnTracker % 2 == 0) {
-      turnTracker = turnTracker + 1;
-      let userSymbol = "x";
-      gameBoardFunctionVar.changeCell(userSymbol, index, cellID);
-    } else {
-      turnTracker = turnTracker + 1;
-      let userSymbol = "o";
-      gameBoardFunctionVar.changeCell(userSymbol, index, cellID);
-    }
-  }
+    gameBoardFunctionVar.changeCell(index, cellID);
+  };
 
   return {
     handleClick,
-    userTurn,
   };
 };
 
