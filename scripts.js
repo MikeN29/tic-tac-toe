@@ -23,16 +23,25 @@ function gameBoardFunction() {
   };
 
   const changeCell = function (userSymbol, index, cellID) {
+    /*
     gameBoardArray[index] = userSymbol;
-
-    ////////////////////////add a function here to update the array with usersymbol based on the index of cell click
-    // for (let i = 0; i < gameBoardArray.length; i++) {
-    //   gameBoardArray[index] = userSymbol;
-    // }
 
     console.log(gameBoardArray);
 
     document.getElementById(cellID).innerText = userSymbol;
+*/
+
+    let cell = document.getElementById(cellID);
+
+    console.log("childnode length = " + cell.childNodes.length);
+
+    if (cell.childNodes.length == 0) {
+      gameBoardArray[index] = userSymbol;
+      console.log(gameBoardArray);
+      document.getElementById(cellID).innerText = userSymbol;
+    } else {
+      alert("Choose a different cell!");
+    }
   };
 
   {
@@ -61,7 +70,6 @@ const gameControl = () => {
   cells.forEach((cell) => {
     cell.addEventListener("click", (event) => {
       handleClick(event);
-      //userTurn();
     });
   });
 
@@ -70,21 +78,11 @@ const gameControl = () => {
     let cellID = event.target.id;
     console.log(index);
     console.log(cellID);
-    updateArray(index, cellID);
+    userTurn(index, cellID);
   };
 
-  /*
-  function checkOdd(int) {
-    return int % 2;
-  }
-
-  if (checkOdd(turnTacker)) {
-    // player2 has to play
-  } else {
-    // player1 has to play
-  }*/
   let turnTracker = 1;
-  function updateArray(index, cellID) {
+  function userTurn(index, cellID) {
     if (turnTracker % 2 == 0) {
       turnTracker = turnTracker + 1;
       let userSymbol = "x";
@@ -94,12 +92,11 @@ const gameControl = () => {
       let userSymbol = "o";
       gameBoardFunctionVar.changeCell(userSymbol, index, cellID);
     }
-
-    //gameBoardFunctionVar.changeCell(userSymbol, index, cellID);
   }
 
   return {
     handleClick,
+    userTurn,
   };
 };
 
