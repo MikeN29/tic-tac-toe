@@ -10,17 +10,19 @@ function gameBoardFunction() {
   // cell7,
   // cell8,
   // cell9
-  let gameBoardArray = {
-    // cell1: "",
-    // cell2: "",
-    // cell3: "x",
-    // cell4: "o",
-    // cell5: "o",
-    // cell6: "o",
-    // cell7: "x",
-    // cell8: "x",
-    // cell9: "x",
-  };
+  let gameBoardArray = ["", "", "", "", "", "", "", "", ""];
+
+  // {
+  //   // cell1: "",
+  //   // cell2: "",
+  //   // cell3: "x",
+  //   // cell4: "o",
+  //   // cell5: "o",
+  //   // cell6: "o",
+  //   // cell7: "x",
+  //   // cell8: "x",
+  //   // cell9: "x",
+  // };
 
   let turnTracker = 1;
 
@@ -35,14 +37,14 @@ function gameBoardFunction() {
       gameBoardArray[index] = userSymbol;
       console.log(gameBoardArray);
       document.getElementById(cellID).innerText = userSymbol;
-      checkWinner();
+      checkWinner(turnTracker);
     } else if (cell.childNodes.length == 0 && turnTracker % 2 == 1) {
       turnTracker = turnTracker + 1;
       let userSymbol = "o";
       gameBoardArray[index] = userSymbol;
       console.log(gameBoardArray);
       document.getElementById(cellID).innerText = userSymbol;
-      checkWinner();
+      checkWinner(turnTracker);
     } else {
       alert("Choose a different cell!");
     }
@@ -50,22 +52,106 @@ function gameBoardFunction() {
 
   //function to check winning condition
 
-  const checkWinner = function () {
+  const checkWinner = function (turnTracker) {
     console.log(gameBoardArray);
     if (
-      (gameBoardArray = {
-        0: "o",
-        1: "o",
-        2: "o",
-        3: "",
-        4: "",
-        5: "",
-        6: "",
-        7: "",
-        8: "",
-      })
+      gameBoardArray[0] === "o" &&
+      gameBoardArray[1] === "o" &&
+      gameBoardArray[2] === "o"
     ) {
-      alert("winner");
+      alert("O Wins");
+    } else if (
+      gameBoardArray[3] === "o" &&
+      gameBoardArray[4] === "o" &&
+      gameBoardArray[5] === "o"
+    ) {
+      alert("O Wins");
+    } else if (
+      gameBoardArray[6] === "o" &&
+      gameBoardArray[7] === "o" &&
+      gameBoardArray[8] === "o"
+    ) {
+      alert("O Wins");
+    } else if (
+      gameBoardArray[0] === "o" &&
+      gameBoardArray[3] === "o" &&
+      gameBoardArray[6] === "o"
+    ) {
+      alert("O Wins");
+    } else if (
+      gameBoardArray[1] === "o" &&
+      gameBoardArray[4] === "o" &&
+      gameBoardArray[7] === "o"
+    ) {
+      alert("O Wins");
+    } else if (
+      gameBoardArray[2] === "o" &&
+      gameBoardArray[5] === "o" &&
+      gameBoardArray[9] === "o"
+    ) {
+      alert("O Wins");
+    } else if (
+      gameBoardArray[0] === "o" &&
+      gameBoardArray[4] === "o" &&
+      gameBoardArray[8] === "o"
+    ) {
+      alert("O Wins");
+    } else if (
+      gameBoardArray[2] === "o" &&
+      gameBoardArray[4] === "o" &&
+      gameBoardArray[6] === "o"
+    ) {
+      alert("O Wins");
+    } else if (
+      gameBoardArray[0] === "x" &&
+      gameBoardArray[1] === "x" &&
+      gameBoardArray[2] === "x"
+    ) {
+      alert("X Wins");
+    } else if (
+      gameBoardArray[3] === "x" &&
+      gameBoardArray[4] === "x" &&
+      gameBoardArray[5] === "x"
+    ) {
+      alert("X Wins");
+    } else if (
+      gameBoardArray[6] === "x" &&
+      gameBoardArray[7] === "x" &&
+      gameBoardArray[8] === "x"
+    ) {
+      alert("X Wins");
+    } else if (
+      gameBoardArray[0] === "x" &&
+      gameBoardArray[3] === "x" &&
+      gameBoardArray[6] === "x"
+    ) {
+      alert("X Wins");
+    } else if (
+      gameBoardArray[1] === "x" &&
+      gameBoardArray[4] === "x" &&
+      gameBoardArray[7] === "x"
+    ) {
+      alert("X Wins");
+    } else if (
+      gameBoardArray[2] === "x" &&
+      gameBoardArray[5] === "x" &&
+      gameBoardArray[9] === "x"
+    ) {
+      alert("X Wins");
+    } else if (
+      gameBoardArray[0] === "x" &&
+      gameBoardArray[4] === "x" &&
+      gameBoardArray[8] === "x"
+    ) {
+      alert("X Wins");
+    } else if (
+      gameBoardArray[2] === "x" &&
+      gameBoardArray[4] === "x" &&
+      gameBoardArray[6] === "x"
+    ) {
+      alert("X Wins");
+    } else if (turnTracker === 10) {
+      alert("THe game is a draw!");
     }
   };
 
