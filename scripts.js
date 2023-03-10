@@ -1,28 +1,7 @@
 //gameboard array
 
 function gameBoardFunction() {
-  // cell1,
-  // cell2,
-  // cell3,
-  // cell4,
-  // cell5,
-  // cell6,
-  // cell7,
-  // cell8,
-  // cell9
   let gameBoardArray = ["", "", "", "", "", "", "", "", ""];
-
-  // {
-  //   // cell1: "",
-  //   // cell2: "",
-  //   // cell3: "x",
-  //   // cell4: "o",
-  //   // cell5: "o",
-  //   // cell6: "o",
-  //   // cell7: "x",
-  //   // cell8: "x",
-  //   // cell9: "x",
-  // };
 
   let turnTracker = 1;
 
@@ -59,7 +38,7 @@ function gameBoardFunction() {
       gameBoardArray[1] === "o" &&
       gameBoardArray[2] === "o"
     ) {
-      alert("O Wins");
+      alert(`"O Wins ${player1}"`); //change to player1.name once players array/object is sorted
     } else if (
       gameBoardArray[3] === "o" &&
       gameBoardArray[4] === "o" &&
@@ -166,12 +145,33 @@ function gameBoardFunction() {
 
 //players array
 
+let playersArray = [];
+
 const Player = (name, symbol) => {
-  //function giving an alert box, taking in player name and choice of symbol. only player 1 can choice symbol. Give player 2 the other symbol
-  //assign these to an object as below
+  // player 1 = o
+  // player 2 = X
 
   return { name, symbol };
 };
+
+const player1Input = document.getElementById("player1Input");
+
+player1Input.addEventListener("click", function updatePlayer1Name() {
+  let name = prompt("Type here");
+  const player1 = Player(name, "O");
+  playersArray.push(player1);
+  console.log(playersArray);
+  console.log(player1.name);
+});
+
+const player2Input = document.getElementById("player2Input");
+
+player2Input.addEventListener("click", function updatePlayer1Name() {
+  let name = prompt("Type here");
+  const player2 = Player(name, "X");
+  playersArray.push(player2);
+  console.log(playersArray);
+});
 
 /////////////////////object to control the flow of the game
 
