@@ -64,3 +64,20 @@
 #gameSetUp {
   height: 300px;
 }
+
+body {
+  margin: 0;
+  border: 0;
+}
+
+#content {
+  text-align: center;
+}
+
+#gameDivOuter {
+  display: inline-block;
+}
+
+#restartGame {
+  margin-top: 10px;
+}

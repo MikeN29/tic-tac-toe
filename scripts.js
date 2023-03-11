@@ -33,12 +33,15 @@ function gameBoardFunction() {
 
   const checkWinner = function (turnTracker) {
     console.log(gameBoardArray);
+
     if (
       gameBoardArray[0] === "o" &&
       gameBoardArray[1] === "o" &&
       gameBoardArray[2] === "o"
     ) {
-      alert(`"O Wins ${player1}"`); //change to player1.name once players array/object is sorted
+      //alert(`"O Wins ${player1}"`);
+      document.getElementById("gameResult").innerHTML =
+        player1.name + " is the winner!"; //undefined is the winner - is being printed. Stringafy?
     } else if (
       gameBoardArray[3] === "o" &&
       gameBoardArray[4] === "o" &&
@@ -66,7 +69,7 @@ function gameBoardFunction() {
     } else if (
       gameBoardArray[2] === "o" &&
       gameBoardArray[5] === "o" &&
-      gameBoardArray[9] === "o"
+      gameBoardArray[8] === "o"
     ) {
       alert("O Wins");
     } else if (
@@ -114,7 +117,7 @@ function gameBoardFunction() {
     } else if (
       gameBoardArray[2] === "x" &&
       gameBoardArray[5] === "x" &&
-      gameBoardArray[9] === "x"
+      gameBoardArray[8] === "x"
     ) {
       alert("X Wins");
     } else if (
@@ -162,6 +165,7 @@ player1Input.addEventListener("click", function updatePlayer1Name() {
   playersArray.push(player1);
   console.log(playersArray);
   console.log(player1.name);
+  document.getElementById("player1").innerText = player1.name;
 });
 
 const player2Input = document.getElementById("player2Input");
@@ -171,6 +175,7 @@ player2Input.addEventListener("click", function updatePlayer1Name() {
   const player2 = Player(name, "X");
   playersArray.push(player2);
   console.log(playersArray);
+  document.getElementById("player2").innerText = player2.name;
 });
 
 /////////////////////object to control the flow of the game
@@ -215,3 +220,5 @@ function renderGameBoard() {
 
 gameControl();
 renderGameBoard();
+
+//need a restart game function
