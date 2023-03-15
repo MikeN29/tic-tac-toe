@@ -1,9 +1,9 @@
 //gameboard array
 
+let turnTracker = 1;
+
 function gameBoardFunction() {
   let gameBoardArray = ["", "", "", "", "", "", "", "", ""];
-
-  let turnTracker = 1;
 
   const changeCell = function (index, cellID) {
     let cell = document.getElementById(cellID);
@@ -37,6 +37,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[0].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[3] === "o" &&
       gameBoardArray[4] === "o" &&
@@ -44,6 +45,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[0].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[6] === "o" &&
       gameBoardArray[7] === "o" &&
@@ -51,6 +53,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[0].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[0] === "o" &&
       gameBoardArray[3] === "o" &&
@@ -58,6 +61,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[0].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[1] === "o" &&
       gameBoardArray[4] === "o" &&
@@ -65,6 +69,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[0].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[2] === "o" &&
       gameBoardArray[5] === "o" &&
@@ -72,6 +77,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[0].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[0] === "o" &&
       gameBoardArray[4] === "o" &&
@@ -79,6 +85,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[0].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[2] === "o" &&
       gameBoardArray[4] === "o" &&
@@ -86,6 +93,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[0].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[0] === "x" &&
       gameBoardArray[1] === "x" &&
@@ -93,6 +101,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[1].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[3] === "x" &&
       gameBoardArray[4] === "x" &&
@@ -100,6 +109,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[1].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[6] === "x" &&
       gameBoardArray[7] === "x" &&
@@ -107,6 +117,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[1].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[0] === "x" &&
       gameBoardArray[3] === "x" &&
@@ -114,6 +125,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[1].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[1] === "x" &&
       gameBoardArray[4] === "x" &&
@@ -121,6 +133,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[1].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[2] === "x" &&
       gameBoardArray[5] === "x" &&
@@ -128,6 +141,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[1].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[0] === "x" &&
       gameBoardArray[4] === "x" &&
@@ -135,6 +149,7 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[1].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (
       gameBoardArray[2] === "x" &&
       gameBoardArray[4] === "x" &&
@@ -142,18 +157,22 @@ function gameBoardFunction() {
     ) {
       document.getElementById("gameResult").innerHTML =
         playersArray[1].name + " is the winner!";
+      clearGameBoard(gameBoardArray);
     } else if (turnTracker === 10) {
       document.getElementById("gameResult").innerHTML = "The game is a draw!";
+      clearGameBoard(gameBoardArray);
     }
   };
 
   ////////////////////
 
-  const restart = () => {
+  const clearGameBoard = (gameBoardArray) => {
     for (let i = 0; i < 9; i++) {
       gameBoardArray[i] = "";
     }
+  };
 
+  const restart = () => {
     const cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => {
       cell.innerHTML = "";
@@ -162,42 +181,9 @@ function gameBoardFunction() {
     document.getElementById("gameResult").innerHTML = "";
     document.getElementById("player1").innerText = "";
     document.getElementById("player2").innerText = "";
+    console.log(gameBoardArray);
+    console.log(playersArray);
   };
-
-  /*
-  resetGameButton.addEventListener(
-    "click",
-    function resetGameFunc(turnTracker, gameBoardArray, playersArray) {
-      //let gameBoardArray = ["", "", "", "", "", "", "", "", ""];
-
-      // if (gameBoardArray.length > 0) {
-      //   gameBoardArray.length = 0;
-      // }
-
-      // while (playersArray.length > 0) {
-      //   playersArray.pop();
-      // }
-
-      // if (turnTracker != 1) {
-      //   let turnTracker = 1;
-      // }
-      //let playersArray = []; // needs to clear what is in array
-
-      const cells = document.querySelectorAll(".cell");
-      cells.forEach((cell) => {
-        cell.innerHTML = "";
-      });
-      document.getElementById("gameResult").innerHTML = "";
-      document.getElementById("player1").innerText = "";
-      document.getElementById("player2").innerText = "";
-
-      console.log(gameBoardArray);
-      console.log(turnTracker);
-      console.log(playersArray);
-    }
-  );*/
-
-  /////////////////
 
   {
     return {
@@ -273,32 +259,7 @@ const resetGameButton = document.getElementById("resetGame");
 
 resetGameButton.addEventListener("click", () => {
   gameBoardFunctionVar.restart();
+  turnTracker = 1;
 });
-
-/*const resetGame = () => {
-const resetGameButton = document.getElementById("resetGame");
-
-resetGameButton.addEventListener("click", function resetGameFunc() {
-  gameBoardFunction.gameBoard = ["", "", "", "", "", "", "", "", ""];
-  let turnTracker = 1;
-  let playersArray = []; // needs to clear what is in array
-
-  const cells = document.querySelectorAll(".cell");
-  cells.forEach((cell) => {
-    cell.innerHTML = "";
-  });
-
-  //console.log(gameBoardArray);
-  console.log(turnTracker);
-  console.log(playersArray);
-  console.log();
-});
-
-//   return {
-//     resetGameFunc,
-//   };
-// };*/
 
 gameControl();
-
-//need a restart game function
