@@ -262,6 +262,7 @@ const resetGameButton = document.getElementById("resetGame");
 resetGameButton.addEventListener("click", () => {
   gameBoardFunctionVar.restart();
   turnTracker = 1;
+  playersArray = [];
 });
 
 gameControl();
