@@ -1,9 +1,11 @@
 //gameboard array
 
-let turnTracker = 1;
+//let turnTracker = 1;
 
 function gameBoardFunction() {
   let gameBoardArray = ["", "", "", "", "", "", "", "", ""];
+
+  this.turnTracker = 1;
 
   const changeCell = function (index, cellID) {
     let cell = document.getElementById(cellID);
